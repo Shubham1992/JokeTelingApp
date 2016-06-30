@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "co.in.joketellingapp"
+        applicationId "co.in.co.in.joketellingapp"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
