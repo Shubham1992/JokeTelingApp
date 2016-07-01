@@ -1,5 +1,6 @@
 package co.in.joketellingapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -62,6 +63,17 @@ public class MainActivity extends ActionBarActivity {
     class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
         private  MyApi myApiService = null;
         private Context context;
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+
+            super.onPreExecute();
+
+            progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog.setMessage("Loading");
+            progressDialog.show();
+        }
 
         @Override
         protected String doInBackground(Pair<Context, String>... params) {
@@ -95,6 +107,7 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            progressDialog.dismiss();
              Intent intent = new Intent(MainActivity.this, JokeDisplayActivity.class);
         intent.putExtra("joke", result);
         startActivity(intent);
